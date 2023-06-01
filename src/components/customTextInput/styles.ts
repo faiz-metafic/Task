@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Colors from '../../utils/Colors';
-import {vw} from '../../utils/Dimensions';
+import {vh, vw} from '../../utils/Dimensions';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     paddingHorizontal: vw(16),
+    paddingVertical: vh(10),
   },
 });
 
