@@ -61,7 +61,6 @@ export default class SearchScreen extends Component<Props, State> {
     this.setState({loading: true});
     getRandomAstroid(
       (data: any) => {
-        console.log(data);
         this.setState({loading: false, searchValue: ''});
         this.props.navigation.navigate(ScreenNames.infoScreen, {
           data,
