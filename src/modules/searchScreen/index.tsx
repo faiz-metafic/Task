@@ -6,7 +6,7 @@ import styles from './styles';
 import {LoginStackParamList} from '../../utils/types';
 import Strings from '../../utils/Strings';
 import Colors from '../../utils/Colors';
-import {Alert, View} from 'react-native';
+import {Alert, Pressable, TouchableOpacity, View} from 'react-native';
 import CustomButton from '../../components/customButton';
 import Loader from '../../components/loader';
 import ScreenNames from '../../utils/ScreenNames';
@@ -74,6 +74,10 @@ export default class SearchScreen extends Component<Props, State> {
   };
 
   render() {
+    let loader = null;
+    if (this.state.loading) {
+      loader = <Loader testID={'Loader'} />;
+    }
     return (
       <Wrapper>
         <View style={styles.container}>
@@ -85,6 +89,7 @@ export default class SearchScreen extends Component<Props, State> {
             onChangeText={this.onChangeText}
           />
           <CustomButton
+            testID={'searchButton'}
             title={Strings.search}
             onPress={this.onSearchPress}
             disabled={this.state.searchValue === ''}
@@ -92,12 +97,13 @@ export default class SearchScreen extends Component<Props, State> {
             containerStyle={styles.buttonContainer}
           />
           <CustomButton
+            testID={'randomButton'}
             title={Strings.random}
             onPress={this.onRandomPress}
             textStyle={styles.randombuttonTextColor}
             containerStyle={styles.randomButtonContainer}
           />
-          {this.state.loading && <Loader />}
+          {loader}
         </View>
       </Wrapper>
     );

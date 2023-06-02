@@ -3,6 +3,7 @@ import {Pressable, Text, TextStyle, View, ViewStyle} from 'react-native';
 import styles from './styles';
 
 interface Props {
+  testID: string;
   title: string;
   containerStyle?: ViewStyle;
   textStyle?: TextStyle;
@@ -13,6 +14,7 @@ interface Props {
 export default class CustomButton extends PureComponent<Props> {
   render() {
     const {
+      testID,
       title,
       containerStyle,
       textStyle,
@@ -21,6 +23,7 @@ export default class CustomButton extends PureComponent<Props> {
     } = this.props;
     return (
       <Pressable
+        testID={testID}
         disabled={disabled}
         style={[styles.container, containerStyle]}
         onPress={onPress}>

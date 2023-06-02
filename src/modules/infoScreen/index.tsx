@@ -25,17 +25,12 @@ export default class InfoScreen extends PureComponent<Props> {
 
   render() {
     const params: any = this.props.route.params;
-    const {
-      absolute_magnitude_h,
-      designation,
-      is_potentially_hazardous_asteroid,
-      name,
-      id,
-    } = params?.data;
+
     return (
       <Wrapper containerStyle={styles.wrappercontainer}>
         <View style={styles.container}>
           <Pressable
+            testID="backButton"
             style={styles.backButtonContainer}
             onPress={this.onBackPress}>
             <Image
@@ -47,24 +42,32 @@ export default class InfoScreen extends PureComponent<Props> {
           <View style={styles.innerContainer}>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Name :'}</Text>
-              <Text style={styles.lineValue}>{name}</Text>
+              <Text testID="Name" style={styles.lineValue}>
+                {params?.name}
+              </Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'ID :'}</Text>
-              <Text style={styles.lineValue}>{id}</Text>
+              <Text testID="id" style={styles.lineValue}>
+                {params?.id}
+              </Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Absolute Magnitude :'}</Text>
-              <Text style={styles.lineValue}>{absolute_magnitude_h}</Text>
+              <Text testID="magnitude" style={styles.lineValue}>
+                {params?.absolute_magnitude_h}
+              </Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Designation :'}</Text>
-              <Text style={styles.lineValue}>{designation}</Text>
+              <Text testID="designation" style={styles.lineValue}>
+                {params?.designation}
+              </Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Is Potentially Hazardous :'}</Text>
-              <Text style={styles.lineValue}>
-                {is_potentially_hazardous_asteroid ? 'YES' : 'No'}
+              <Text testID="hazardouse" style={styles.lineValue}>
+                {params?.is_potentially_hazardous_asteroid ? 'YES' : 'No'}
               </Text>
             </View>
           </View>

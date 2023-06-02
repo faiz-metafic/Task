@@ -1,11 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component, ReactPropTypes} from 'react';
 import {ActivityIndicator, Dimensions, StyleSheet, View} from 'react-native';
-import {vh} from '../utils/Dimensions';
 
-export default class Loader extends Component {
+interface Props {
+  testID?: string;
+}
+
+export default class Loader extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
   render() {
     return (
-      <View style={styles.loader}>
+      <View style={styles.loader} testID={this.props.testID}>
         <ActivityIndicator size={'large'} color={'white'} />
       </View>
     );
