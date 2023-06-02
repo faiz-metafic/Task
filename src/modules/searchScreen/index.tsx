@@ -8,9 +8,9 @@ import Strings from '../../utils/Strings';
 import Colors from '../../utils/Colors';
 import {Alert, View} from 'react-native';
 import CustomButton from '../../components/customButton';
-import axios from 'axios';
 import Loader from '../../components/loader';
 import ScreenNames from '../../utils/ScreenNames';
+import {getAstroidData, getRandomAstroid} from './action';
 
 type SearchScreenNavigationProp =
   NativeStackNavigationProp<LoginStackParamList>;
@@ -22,8 +22,6 @@ interface State {
 interface Props {
   navigation: SearchScreenNavigationProp;
 }
-
-const apiKey = 'MSWldKcAiRtZK54zep5TMwddoF1BhaJwoofH2Ttl';
 
 export default class SearchScreen extends Component<Props, State> {
   constructor(props: any) {
@@ -39,40 +37,41 @@ export default class SearchScreen extends Component<Props, State> {
     this.setState({searchValue: text});
   };
 
-  onSearchPress = async () => {
-    try {
-      this.setState({loading: true});
-      const response = await axios.get(
-        `https://api.nasa.gov/neo/rest/v1/neo/${this.state.searchValue}?api_key=${apiKey}`,
-      );
-      this.setState({loading: false, searchValue: ''});
-      this.props.navigation.navigate(ScreenNames.infoScreen, {
-        data: response?.data,
-      });
-    } catch (error) {
-      this.setState({loading: false});
-      Alert.alert(
-        'OOPS',
-        `Astroid with id ${this.state.searchValue} not Found`,
-      );
-    }
+  onSearchPress = () => {
+    this.setState({loading: true});
+    getAstroidData(
+      this.state.searchValue,
+      (data: any) => {
+        this.setState({loading: false, searchValue: ''});
+        this.props.navigation.navigate(ScreenNames.infoScreen, {
+          data,
+        });
+      },
+      () => {
+        this.setState({loading: false});
+        Alert.alert(
+          'OOPS',
+          `Astroid with id ${this.state.searchValue} not Found`,
+        );
+      },
+    );
   };
 
-  onRandomPress = async () => {
-    try {
-      this.setState({loading: true});
-      const response = await axios.get(
-        `https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${apiKey}`,
-      );
-      let randomNumber = Math.floor(Math.random() * 20);
-      this.setState({loading: false, searchValue: ''});
-      this.props.navigation.navigate(ScreenNames.infoScreen, {
-        data: response?.data?.near_earth_objects[randomNumber],
-      });
-    } catch (error) {
-      this.setState({loading: false});
-      Alert.alert('Something Went Wrong');
-    }
+  onRandomPress = () => {
+    this.setState({loading: true});
+    getRandomAstroid(
+      (data: any) => {
+        console.log(data);
+        this.setState({loading: false, searchValue: ''});
+        this.props.navigation.navigate(ScreenNames.infoScreen, {
+          data,
+        });
+      },
+      () => {
+        this.setState({loading: false});
+        Alert.alert('Something Went Wrong');
+      },
+    );
   };
 
   render() {

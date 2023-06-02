@@ -25,12 +25,12 @@ export default class InfoScreen extends PureComponent<Props> {
 
   render() {
     const params: any = this.props.route.params;
-    console.log('params', params);
     const {
       absolute_magnitude_h,
       designation,
       is_potentially_hazardous_asteroid,
       name,
+      id,
     } = params?.data;
     return (
       <Wrapper containerStyle={styles.wrappercontainer}>
@@ -48,6 +48,10 @@ export default class InfoScreen extends PureComponent<Props> {
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Name :'}</Text>
               <Text style={styles.lineValue}>{name}</Text>
+            </View>
+            <View style={styles.lineContainer}>
+              <Text style={styles.lineKey}>{'ID :'}</Text>
+              <Text style={styles.lineValue}>{id}</Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Absolute Magnitude :'}</Text>
