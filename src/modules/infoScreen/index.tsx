@@ -22,9 +22,10 @@ export default class InfoScreen extends PureComponent<Props> {
   onBackPress = () => {
     this.props.navigation.goBack();
   };
-
+  
   render() {
     const params: any = this.props.route.params;
+    console.log('para',params)
 
     return (
       <Wrapper containerStyle={styles.wrappercontainer}>
@@ -43,31 +44,31 @@ export default class InfoScreen extends PureComponent<Props> {
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Name :'}</Text>
               <Text testID="Name" style={styles.lineValue}>
-                {params?.name}
+                {params?.data?.name}
               </Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'ID :'}</Text>
               <Text testID="id" style={styles.lineValue}>
-                {params?.id}
+                {params?.data?.id}
               </Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Absolute Magnitude :'}</Text>
               <Text testID="magnitude" style={styles.lineValue}>
-                {params?.absolute_magnitude_h}
+                {params?.data?.absolute_magnitude_h}
               </Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Designation :'}</Text>
               <Text testID="designation" style={styles.lineValue}>
-                {params?.designation}
+                {params?.data?.designation}
               </Text>
             </View>
             <View style={styles.lineContainer}>
               <Text style={styles.lineKey}>{'Is Potentially Hazardous :'}</Text>
               <Text testID="hazardouse" style={styles.lineValue}>
-                {params?.is_potentially_hazardous_asteroid ? 'YES' : 'No'}
+                {params?.data?.is_potentially_hazardous_asteroid ? 'YES' : 'No'}
               </Text>
             </View>
           </View>
