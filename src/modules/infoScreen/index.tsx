@@ -22,10 +22,9 @@ export default class InfoScreen extends PureComponent<Props> {
   onBackPress = () => {
     this.props.navigation.goBack();
   };
-  
+
   render() {
     const params: any = this.props.route.params;
-    console.log('para',params)
 
     return (
       <Wrapper containerStyle={styles.wrappercontainer}>

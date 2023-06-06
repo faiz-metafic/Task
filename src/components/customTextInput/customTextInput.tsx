@@ -1,9 +1,10 @@
-import React, {PureComponent} from 'react';
+import {PureComponent} from 'react';
 import {TextInput, TextStyle, View, ViewStyle} from 'react-native';
 import styles from './styles';
 
 interface Props {
   value: string;
+  testID: string;
   placeholder: string;
   inputStyle?: TextStyle;
   containerStyle?: ViewStyle;
@@ -15,6 +16,7 @@ export default class CustomTextInput extends PureComponent<Props> {
   render() {
     const {
       value,
+      testID,
       onChangeText,
       placeholder,
       placeholderTextColor,
@@ -25,6 +27,7 @@ export default class CustomTextInput extends PureComponent<Props> {
       <View style={[styles.container, containerStyle]}>
         <TextInput
           value={value}
+          testID={testID}
           placeholderTextColor={placeholderTextColor}
           onChangeText={onChangeText}
           placeholder={placeholder}

@@ -1,8 +1,9 @@
 import React, {Component, ReactPropTypes} from 'react';
-import {ActivityIndicator, Dimensions, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, ViewStyle, StyleSheet, View} from 'react-native';
 
 interface Props {
   testID?: string;
+  containerStyle?: ViewStyle;
 }
 
 export default class Loader extends Component<Props> {
@@ -10,8 +11,9 @@ export default class Loader extends Component<Props> {
     super(props);
   }
   render() {
+    const {containerStyle, testID} = this.props;
     return (
-      <View style={styles.loader} testID={this.props.testID}>
+      <View style={[styles.loader, containerStyle]} testID={testID}>
         <ActivityIndicator size={'large'} color={'white'} />
       </View>
     );
@@ -20,10 +22,10 @@ export default class Loader extends Component<Props> {
 
 const styles = StyleSheet.create({
   loader: {
-    height: '100%',
     width: '100%',
     position: 'absolute',
-    top: '200%',
+    top: '40%',
+    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
